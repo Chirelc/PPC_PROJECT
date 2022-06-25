@@ -47,7 +47,7 @@ public class OperationController {
 
     }
 
-    @GetMapping("/operation/findByDeviseDest/{ibanDest}")
+    @GetMapping("/operation/findByIbanDest/{ibanDest}")
     public Optional<Operation> getOperationByIbanDest(@PathVariable String ibanDest){
         return repository.findBySourceIban(ibanDest);
     }

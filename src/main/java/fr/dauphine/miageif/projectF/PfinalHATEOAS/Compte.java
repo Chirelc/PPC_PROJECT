@@ -4,12 +4,11 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-
-// Classe persistente representant  un "un compte bancaire "
     @Entity
     public class Compte{
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
         @Column(name="IBAN")
@@ -28,9 +27,8 @@ import java.util.List;
     public Compte() {
     }
 
-    public Compte( long id,String iban, String type, BigDecimal interest, String frais) {
+    public Compte( String iban, String type, BigDecimal interest, String frais) {
         super();
-        this.id=id;
             this.iban = iban;
             this.type = type;
             this.interest= interest;

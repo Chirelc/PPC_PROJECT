@@ -9,9 +9,8 @@ import java.util.Optional;
 // Creation du JPA Repository basé sur Spring Data
 //  Permet de "générer" toutes sortes de requêtes JPA, sans implementation
 public interface CompteRepository extends JpaRepository<Compte, Long>{
+    Compte save(Compte compte);
     Compte findByIban(String iban);
     List<Compte> findAll();
-    Compte save(Compte compte);
     Optional<Compte> findById(Long id);
-
 }
