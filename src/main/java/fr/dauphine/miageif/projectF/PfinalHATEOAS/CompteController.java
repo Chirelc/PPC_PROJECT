@@ -21,27 +21,23 @@ public class CompteController {
     @Autowired
     private CompteService service;
 
-    public CompteController(CompteService service) {
-        this.service = service;
-    }
-
     //Create an instance of account and insert it into database
     @PostMapping(path = "/newAccount")
-    public Compte createCompte(@RequestParam long id,@RequestParam String iban, @RequestParam String type, @RequestParam BigDecimal interest, @RequestParam String frais) {
-        Compte compte = new Compte(id,iban, type, interest, frais);
+    public Compte createCompte(@RequestBody String iban, @RequestBody String type, @RequestBody int interest,@RequestBody String frais) {
+        BigDecimal i= BigDecimal.valueOf(interest);
+        Compte compte = new Compte(iban, type,i, frais);
         compteRepository.save(compte);
         return compte;
     }
 
     //Get an account informations by iban
     @GetMapping("/getCompteIban/{iban}")
-    public Compte getCompteByIban(@PathVariable String iban) {
+    public void getCompteByIban(@PathVariable String iban) {
         Compte compte = compteRepository.findByIban(iban);
-        return compte;
     }
 
     //Get account informations by id
-    @GetMapping("/getCompteBid/{id}")
+    @GetMapping("/getCompteByid/{id}")
     public Optional<Compte> getCompteById(@PathVariable Long id) {
         Optional<Compte> compte = compteRepository.findById(id);
         return compte;
