@@ -9,12 +9,12 @@ import java.util.Optional;
 public interface OperationRepository extends JpaRepository<Operation, Long> {
         List<Operation> findAll();
         Operation save(Operation operation);
-        List<Operation> findById(long id);
-        Optional<Operation> findByIbanSrc(String sourceIban);
-        Optional<Operation> findByIbanDest(String desIban);
+        Operation findById(long id);
+        Optional<Operation> findBySourceIban(String sourceIban);
+        //Optional<Operation> findByIbanDest(String desIban);
         Optional<Operation> findByDate(String date);
         Optional<Operation> findByMontant(BigDecimal montant);
-        Optional<Operation> findByTypeOp(String type);
-        Optional<Operation> findByCompteSrcAndCompteDest(String sourceIban, String desIban);
+        //Optional<Operation> findByTypeOp(String type);
+        Optional<Operation> findBySourceAndDestination(String sourceIban, String destIban);
     }
 

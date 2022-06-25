@@ -19,8 +19,8 @@ public class OperationController {
 
 
     @PostMapping("/addOperation")
-    public Operation addOperation(@RequestBody long id,@RequestBody String type,@RequestBody Compte source,@RequestBody Compte dest,@RequestBody String devise,@RequestBody BigDecimal montant){
-        Operation op=new Operation(id,type,source,dest,devise,montant);
+    public Operation addOperation(@RequestBody long id,@RequestBody String type,@RequestBody Compte source,@RequestBody Compte destination,@RequestBody String devise,@RequestBody BigDecimal montant){
+        Operation op=new Operation(id,type,source,destination,devise,montant);
         repository.save(op);
         return op;
 
@@ -32,8 +32,8 @@ public class OperationController {
     }
 
     @GetMapping("/operationById/{id}")
-    public Operation getOperationById(@PathVariable Long id){
-        return repository.findById(id).orElse(null);
+    public Operation getOperationById(@PathVariable long id){
+        return repository.findById(id);
     }
 
     @GetMapping("/operation/findByMontant/{montant}")
@@ -43,13 +43,13 @@ public class OperationController {
 
     @GetMapping("/operation/findByIbanSrc/{IbanSrc}")
     public Optional<Operation> getOperationByIbanSrc(@PathVariable String ibanSrc){
-        return repository.findByIbanSrc(ibanSrc);
+        return repository.findBySourceIban(ibanSrc);
 
     }
 
     @GetMapping("/operation/findByDeviseDest/{ibanDest}")
     public Optional<Operation> getOperationByIbanDest(@PathVariable String ibanDest){
-        return repository.findByIbanSrc(ibanDest);
+        return repository.findBySourceIban(ibanDest);
     }
 
     @GetMapping("/operation/findByDate/{date}")
@@ -59,7 +59,7 @@ public class OperationController {
 
     @GetMapping("/operation/findByCompte/src/{src}/dest/{dest}")
     public Optional<Operation> getOperationsCompte(@PathVariable String src, @PathVariable String dest){
-        return repository.findByCompteSrcAndCompteDest(src,dest);
+        return repository.findBySourceAndDestination(src,dest);
     }
 
     @GetMapping("/operation/montant/{id}")

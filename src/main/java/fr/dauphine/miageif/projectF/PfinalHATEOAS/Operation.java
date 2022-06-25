@@ -10,8 +10,7 @@ import java.util.Date;
 public class Operation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name="type operation")
     private String type;
@@ -55,6 +54,7 @@ public class Operation {
         this.devise=devise;
         this.date=new Date();
         this.destIban=destination.getIban();
+        this.sourceIban=source.getIban();
 
 
     }
