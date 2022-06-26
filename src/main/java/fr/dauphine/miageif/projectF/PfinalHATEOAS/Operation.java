@@ -12,30 +12,23 @@ public class Operation {
     @Id
     private long id;
 
-    @Column(name="type_operation")
     private String type;
 
     @ManyToOne
     @JoinColumn(name = "source_id")
     private Compte source;
 
-    @Column(name="Iban_source ")
     private String sourceIban;
 
     @ManyToOne
-    @JoinColumn(name = "destination_id")
     private Compte destination;
 
-    @Column(name="Iban_destination ")
     private String destIban;
 
-    @Column(name="Devise ")
     private String devise;
 
-    @Column(name = "Date")
     private Date date;
 
-    @Column(name="Montant")
     private BigDecimal montant;
 
 

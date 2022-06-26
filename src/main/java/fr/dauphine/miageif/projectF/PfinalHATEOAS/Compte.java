@@ -11,16 +11,12 @@ import java.util.List;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
-        @Column(name="IBAN")
         private String iban;
 
-        @Column(name="Type de Compte")
         private String type;
 
-        @Column(name="interet")
         private BigDecimal interest;
 
-        @Column(name="Frais de tenue de compte")
         private String frais;
         @OneToMany
         private List<Operation> operations;

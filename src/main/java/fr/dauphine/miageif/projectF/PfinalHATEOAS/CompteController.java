@@ -5,7 +5,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +22,9 @@ public class CompteController {
 
     //Create an instance of account and insert it into database
     @PostMapping(path = "/newAccount")
-    public Compte createCompte(@RequestBody String iban, @RequestBody String type, @RequestBody int interest,@RequestBody String frais) {
-        BigDecimal i= BigDecimal.valueOf(interest);
-        Compte compte = new Compte(iban, type,i, frais);
-        compteRepository.save(compte);
-        return compte;
+    public Compte createCompte(@RequestBody Compte compte ) {
+        //Compte compte = new Compte(iban, type,interest, frais);
+        return service.saveCompte(compte);
     }
 
     //Get an account informations by iban

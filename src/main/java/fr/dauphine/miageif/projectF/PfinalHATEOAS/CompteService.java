@@ -25,7 +25,11 @@ public class CompteService {
             return "Can't delete rate by id "+ id;
         }
     }
-
+    public Compte saveCompte(Compte compte){
+        //DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        //changes.forEach((ch) -> ch.setDate(df.format(new Date())));
+        return repository.save(compte);
+    }
 
     public Compte update(Long id, Compte newCompte){
         Compte ex =repository.findById(id).orElse(null);
